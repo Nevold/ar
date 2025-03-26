@@ -1,44 +1,8 @@
-import { Options } from './components/controls/options';
-import { Nodes } from './components/nodes';
-import { DecisionPicker } from './components/pages/decision-picker';
-import { ListOfOptions } from './components/pages/list-of-options';
-import { NotFound } from './components/pages/not-found';
-import './global.css';
-import { StorageService } from './services/local-storage.service';
-import { HashRouter } from './services/router.service';
+import App from './components/app/app';
+import './style.css';
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (!globalThis.location.hash) {
-    globalThis.location.hash = '#/';
-  }
+const app = new App();
+app.start();
 
-  document.body.append(Nodes.main);
-
-  HashRouter.start();
-
-  HashRouter.addRoute('/', () => {
-    Nodes.main.replaceChildren();
-    Options.list().replaceChildren();
-    ListOfOptions.start();
-  });
-
-  HashRouter.addRoute('/decision-picker', () => {
-    StorageService.getData();
-    const isRule = StorageService.data.list.filter(element => element.title !== '' && +element.weight > 0).length >= 2;
-
-    if (isRule) {
-      Nodes.labelDurationNode.replaceChildren();
-      Nodes.soundButtonNode.remove();
-      Nodes.formPickNode.replaceChildren();
-      Nodes.main.replaceChildren();
-      DecisionPicker.start();
-    } else {
-      HashRouter.navigateTo('/');
-    }
-  });
-
-  HashRouter.setNotFound(() => {
-    Nodes.main.replaceChildren();
-    NotFound.start();
-  });
-});
+console.log('%c Score:190/190', 'background: #222; color: #bada55');
+console.log('%c ALL TASKS COMPLETED!', 'background: #222; color: #bada55');
