@@ -13,6 +13,7 @@ class CarServices {
       return { item: response.data, count: response.headers['x-total-count'] };
     } catch (error) {
       console.log('Error:', error);
+      return undefined;
     }
   };
 
