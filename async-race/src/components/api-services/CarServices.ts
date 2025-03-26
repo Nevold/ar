@@ -1,10 +1,12 @@
-import { ICar, ICars } from '../types/types';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
+
+import type { ICar, ICars } from '../types/types';
+
 import Api from './api';
+
 class CarServices {
-  static readonly getCar = async (id: number): Promise<AxiosResponse<ICar>> => {
-    return Api.garageApi.get<ICar>(`/${id}`);
-  };
+  public static readonly getCar = async (id: number): Promise<AxiosResponse<ICar>> => Api.garageApi.get<ICar>(`/${id}`);
+
   static readonly getCars = async (page: number, limit = 7): Promise<ICars | undefined> => {
     try {
       const response = await Api.garageApi.get<ICar[]>(`?_page=${page}&_limit=${limit}`);
