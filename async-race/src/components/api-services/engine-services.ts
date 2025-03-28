@@ -3,15 +3,13 @@ import { AxiosResponse, AxiosError } from 'axios';
 import Api from './api';
 
 class EngineServices {
-  static readonly startEngineCar = async (id: number): Promise<AxiosResponse<IEngineCar>> => {
-    return Api.engineApi.patch(`?id=${id}&status=started`);
-  };
+  public static readonly startEngineCar = async (id: number): Promise<AxiosResponse<IEngineCar>> =>
+    Api.engineApi.patch(`?id=${id}&status=started`);
 
-  static readonly stopEngineCar = async (id: number): Promise<AxiosResponse<IEngineCar>> => {
-    return Api.engineApi.patch(`?id=${id}&status=stopped`);
-  };
+  public static readonly stopEngineCar = async (id: number): Promise<AxiosResponse<IEngineCar>> =>
+    Api.engineApi.patch(`?id=${id}&status=stopped`);
 
-  static readonly isSuccessDriveCar = async (id: number): Promise<{ success: boolean }> => {
+  public static readonly isSuccessDriveCar = async (id: number): Promise<{ success: boolean }> => {
     try {
       const responce = await Api.engineApi.patch(`?id=${id}&status=drive`);
       return responce.data;
