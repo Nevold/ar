@@ -1,5 +1,5 @@
-import CarServices from '../api-services/CarServices';
-import WinnersServices from '../api-services/WinnersServices';
+import CarServices from '../api-services/car-services';
+import WinnersServices from '../api-services/winners-services';
 import { disabledRaceButton, generateCars } from '../shared/utils';
 import { updateGaragePage } from '../view/update-garage/update-garage';
 

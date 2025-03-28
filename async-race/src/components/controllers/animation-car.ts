@@ -1,9 +1,9 @@
 import { ICar, ISuccessRaceCars } from '../types/types';
 import { animation, disableAllControlButton, disabledRaceButton } from '../shared/utils';
-import WinnersServices from '../api-services/WinnersServices';
+import WinnersServices from '../api-services/winners-services';
 import Constants from '../shared/constants';
-import CarServices from '../api-services/CarServices';
-import EngineServices from '../api-services/EngineServices';
+import CarServices from '../api-services/car-services';
+import EngineServices from '../api-services/engine-services';
 
 export function animationCar(): void {
   let id: number;

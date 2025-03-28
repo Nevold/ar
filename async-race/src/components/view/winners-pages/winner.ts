@@ -1,4 +1,4 @@
-import CarServices from '../../api-services/CarServices';
+import CarServices from '../../api-services/car-services';
 import { IWinnerCar } from '../../types/types';
 import { carImg } from '../render-car-img/car-img';
 
