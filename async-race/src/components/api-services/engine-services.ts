@@ -1,6 +1,7 @@
 import type { AxiosResponse, AxiosError } from 'axios';
 import type { IEngineCar } from '../types/types';
 import Api from './api';
+import { isAxiosErrorCustom } from '../shared/utils';
 
 class EngineServices {
   public static readonly startEngineCar = async (id: number): Promise<AxiosResponse<IEngineCar>> =>
@@ -26,7 +27,10 @@ class EngineServices {
       }
       return { success: false };
     } catch (error) {
-      if ((error as AxiosError).response?.status === 404 || (error as AxiosError).response?.status === 429) {
+      if (
+        (isAxiosErrorCustom(error) && error.response?.status === 404) ||
+        (isAxiosErrorCustom(error) && error.response?.status === 429)
+      ) {
         console.log(
           '%c STOP repeating this operation again and again as a mad man:) It is not a bug!',
           'background: grey;color:#e9ed09;font-weight:bold'

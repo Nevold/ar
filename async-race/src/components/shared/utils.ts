@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import EngineServices from '../api-services/engine-services';
 
 const modelCars = ['Toyota', 'Mercedes', 'BMW', 'Honda', 'Volkswagen', 'Ford', 'Hyundai', 'Audi', 'Porsche', 'Nissan'];
@@ -142,4 +143,14 @@ export function disabledRaceButton(element: HTMLElement) {
     raceBtn?.classList.add('active-button');
     raceBtn.disabled = false;
   }
+}
+
+export function isAxiosErrorCustom(error: unknown): error is AxiosError {
+  return (
+    error instanceof Error &&
+    'isAxiosError' in error &&
+    error.isAxiosError === true &&
+    'response' in error &&
+    'request' in error
+  );
 }
