@@ -11,8 +11,20 @@ class EngineServices {
 
   public static readonly isSuccessDriveCar = async (id: number): Promise<{ success: boolean }> => {
     try {
-      const responce = await Api.engineApi.patch(`?id=${id}&status=drive`);
-      return responce.data;
+      const response = await Api.engineApi.patch<{ success: boolean }>(`?id=${id}&status=drive`);
+      if (
+        response &&
+        typeof response === 'object' &&
+        'data' in response &&
+        typeof response.data === 'object' &&
+        response.data !== null &&
+        'success' in response.data &&
+        typeof response.data.success === 'boolean'
+      ) {
+        const resp = response.data;
+        return resp;
+      }
+      return { success: false };
     } catch (error) {
       if ((error as AxiosError).response?.status === 404 || (error as AxiosError).response?.status === 429) {
         console.log(
