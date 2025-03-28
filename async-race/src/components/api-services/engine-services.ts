@@ -1,5 +1,5 @@
-import { IEngineCar } from '../types/types';
-import { AxiosResponse, AxiosError } from 'axios';
+import type { AxiosResponse, AxiosError } from 'axios';
+import type { IEngineCar } from '../types/types';
 import Api from './api';
 
 class EngineServices {
