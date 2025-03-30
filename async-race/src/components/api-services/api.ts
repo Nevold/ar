@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-import Constants from '../shared/constants';
+import { Constants } from '../shared/constants';
 
 class Api {
   public static readonly garageApi = axios.create({
