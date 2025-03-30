@@ -48,3 +48,10 @@ export interface IOptions {
   color: string;
   id: number;
 }
+
+export interface CustomAxiosError<T = unknown> extends Error {
+  response?: {
+    data: T;
+    status: number;
+  };
+}

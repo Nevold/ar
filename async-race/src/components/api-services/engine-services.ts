@@ -1,7 +1,7 @@
-import type { AxiosResponse, AxiosError } from 'axios';
+import type { AxiosResponse } from 'axios';
 import type { IEngineCar } from '../types/types';
 import Api from './api';
-import { isAxiosErrorCustom } from '../shared/utils';
+import { isAxiosErrorCustom } from '../shared/errors';
 
 class EngineServices {
   public static readonly startEngineCar = async (id: number): Promise<AxiosResponse<IEngineCar>> =>
@@ -35,11 +35,8 @@ class EngineServices {
           '%c STOP repeating this operation again and again as a mad man:) It is not a bug!',
           'background: grey;color:#e9ed09;font-weight:bold'
         );
-      } else {
-        console.log(
-          `%c Description: ${(error as AxiosError).response?.data}`,
-          'background: grey;color:#e9ed09;font-weight:bold'
-        );
+      } else if (isAxiosErrorCustom(error) && error.response) {
+        console.log(`%c Description: ${error.response.data}`, 'background: grey;color:#e9ed09;font-weight:bold');
       }
       return { success: false };
     }

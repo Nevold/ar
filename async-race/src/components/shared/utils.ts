@@ -1,20 +1,19 @@
-import { AxiosError } from 'axios';
 import EngineServices from '../api-services/engine-services';
 
 const modelCars = ['Toyota', 'Mercedes', 'BMW', 'Honda', 'Volkswagen', 'Ford', 'Hyundai', 'Audi', 'Porsche', 'Nissan'];
 const modelNames = ['rav4', 's600', '3', 'accord', 'golf', 'mondeo', 'i30', 'q5', 'cayenne'];
 
-function getRandomName() {
+function getRandomName(): string {
   const modelCar = modelCars[Math.floor(Math.random() * modelCars.length)];
   const modelName = modelNames[Math.floor(Math.random() * modelNames.length)];
   return `${modelCar} ${modelName}`;
 }
 
-function getRandomColor() {
+function getRandomColor(): string {
   const SIMBOL = '0123456789ABCDEF';
   const COLOR_LIMIT = 6;
   let hash = '#';
-  for (let i = 0; i < COLOR_LIMIT; i++) {
+  for (let index = 0; index < COLOR_LIMIT; index += 1) {
     hash += SIMBOL[Math.floor(Math.random() * SIMBOL.length)];
   }
   return hash;
@@ -143,14 +142,4 @@ export function disabledRaceButton(element: HTMLElement) {
     raceBtn?.classList.add('active-button');
     raceBtn.disabled = false;
   }
-}
-
-export function isAxiosErrorCustom(error: unknown): error is AxiosError {
-  return (
-    error instanceof Error &&
-    'isAxiosError' in error &&
-    error.isAxiosError === true &&
-    'response' in error &&
-    'request' in error
-  );
 }
