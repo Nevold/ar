@@ -10,10 +10,10 @@ import { updateGaragePage } from '../view/update-garage/update-garage';
 import { updateWinnerPage } from '../view/winners-pages/update-winners';
 
 class App {
-  start(): void {
+  public static readonly start = async (): Promise<void> => {
     render();
-    updateGaragePage();
-    updateWinnerPage();
+    await updateGaragePage();
+    await updateWinnerPage();
     changeCar();
     sortWinners();
     routing();
@@ -21,6 +21,6 @@ class App {
     setFlippedWinners();
     generateCars();
     animationCar();
-  }
+  };
 }
 export default App;
