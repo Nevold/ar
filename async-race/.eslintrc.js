@@ -49,7 +49,8 @@ module.exports = {
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
-    'unicorn/no-for-loop': 'off'
+    'unicorn/no-for-loop': 'off',
+    'no-param-reassign': 'off'
   },
   noInlineConfig: true,
   reportUnusedDisableDirectives: true

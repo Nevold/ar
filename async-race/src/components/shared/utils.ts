@@ -53,7 +53,8 @@ export async function animation(
   successAnimationCarId = globalThis.requestAnimationFrame(step);
 
   if (carId !== -1) {
-    const successAnimationCar = (await EngineServices.isSuccessDriveCar(carId)).success;
+    const driveResult = await EngineServices.isSuccessDriveCar(carId);
+    const successAnimationCar = driveResult.success;
     if (!successAnimationCar) {
       globalThis.cancelAnimationFrame(successAnimationCarId);
     }
