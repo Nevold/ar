@@ -63,7 +63,7 @@ export async function animation(
   return undefined;
 }
 
-export function disableAllControlButton(element: HTMLElement) {
+export function disableAllControlButton(element: HTMLElement): void {
   const controlButtonsList = document.getElementsByClassName('control-button') as HTMLCollectionOf<HTMLDivElement>;
   const generateBtn = document.getElementById('generate') as HTMLButtonElement;
   const updateBtn = document.getElementById('update-submit') as HTMLButtonElement;
