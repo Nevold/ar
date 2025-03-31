@@ -52,7 +52,8 @@ module.exports = {
     'unicorn/no-for-loop': 'off',
     'no-param-reassign': 'off',
     '@typescript-eslint/consistent-type-assertions': 'off', // TODO: DELETE
-    'unicorn/prefer-query-selector': 'off' // TODO: DELETE
+    'unicorn/prefer-query-selector': 'off', // TODO: DELETE
+    '@typescript-eslint/no-misused-promises': 'off' // TODO: DELETE
   },
   noInlineConfig: true,
   reportUnusedDisableDirectives: true
