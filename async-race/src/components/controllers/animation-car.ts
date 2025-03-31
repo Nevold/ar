@@ -122,17 +122,23 @@ export function animationCar(): void {
       }
 
       case element.classList.contains('reset'): {
-        arrayCars = (await CarServices.getCars(numberPage))?.item;
-        const promisesStop = arrayCars?.map(async element_ => {
-          const currentCarStop = document.getElementById(`car-${element_.id}`);
-          currentCarStop?.classList.remove('in-transit');
-          const { velocity: velocityCarStop, distance: distanceCarStop } = (
-            await EngineServices.stopEngineCar(element_.id)
-          ).data;
-          const animationTimeRaceStop = distanceCarStop / velocityCarStop;
-          animation(currentCarStop, distanceCarStop, animationTimeRaceStop);
-        });
-        await Promise.all(promisesStop as Promise<void>[]);
+        try {
+          const carArrayResult = await CarServices.getCars(numberPage);
+          arrayCars = carArrayResult?.item;
+          const promisesStop = arrayCars?.map(async element_ => {
+            const currentCarStop = document.getElementById(`car-${element_.id}`);
+            currentCarStop?.classList.remove('in-transit');
+
+            const stopEngineCarResult = await EngineServices.stopEngineCar(element_.id);
+            const { velocity: velocityCarStop, distance: distanceCarStop } = stopEngineCarResult.data;
+            const animationTimeRaceStop = distanceCarStop / velocityCarStop;
+            await animation(currentCarStop, distanceCarStop, animationTimeRaceStop);
+          });
+          await Promise.all(promisesStop as Promise<void>[]);
+        } catch (error) {
+          console.log(`%c Error: ${String(error)}`, 'background: grey;color:#e9ed09;font-weight:bold');
+        }
+
         disableAllControlButton(element);
         element.classList.remove('active-button');
         (element as HTMLButtonElement).disabled = true;
