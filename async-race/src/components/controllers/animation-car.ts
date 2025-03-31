@@ -88,24 +88,32 @@ export function animationCar(): void {
           return returnFirstFastCar();
         };
 
-        const winnerCar = await returnFirstFastCar();
+        try {
+          const winnerCar = await returnFirstFastCar();
 
-        if (winnerCar !== undefined) {
-          const winnersArrayResult = await WinnersServices.getWinners();
-          const WinnerExsist = winnersArrayResult.item.filter(element_ => element_.id === winnerCar.id);
+          if (winnerCar !== undefined) {
+            const winnersArrayResult = await WinnersServices.getWinners();
+            const WinnerExsist = winnersArrayResult.item.filter(element_ => element_.id === winnerCar.id);
 
-          if (WinnerExsist.length === 0) {
-            await WinnersServices.createWinner(winnerCar.id, Constants.ONE_WIN, winnerCar.time);
-          } else {
-            const winnerResult = await WinnersServices.getWinner(winnerCar.id);
-            const increaseWin = winnerResult.data.wins + Constants.ONE_WIN;
-            await (WinnerExsist[Constants.FIRST_ELEM_ARRAY].time > winnerCar.time
-              ? WinnersServices.updateWinner(winnerCar.id, increaseWin, winnerCar.time)
-              : WinnersServices.updateWinner(winnerCar.id, increaseWin, WinnerExsist[Constants.FIRST_ELEM_ARRAY].time));
+            if (WinnerExsist.length === 0) {
+              await WinnersServices.createWinner(winnerCar.id, Constants.ONE_WIN, winnerCar.time);
+            } else {
+              const winnerResult = await WinnersServices.getWinner(winnerCar.id);
+              const increaseWin = winnerResult.data.wins + Constants.ONE_WIN;
+              await (WinnerExsist[Constants.FIRST_ELEM_ARRAY].time > winnerCar.time
+                ? WinnersServices.updateWinner(winnerCar.id, increaseWin, winnerCar.time)
+                : WinnersServices.updateWinner(
+                    winnerCar.id,
+                    increaseWin,
+                    WinnerExsist[Constants.FIRST_ELEM_ARRAY].time
+                  ));
+            }
           }
+          (winnerMessage as HTMLElement).textContent = `${winnerCar?.name} win ${winnerCar?.time} sec`;
+          winnerMessage?.classList.add('score-disable');
+        } catch (error) {
+          console.log(`%c Error: ${String(error)}`, 'background: grey;color:#e9ed09;font-weight:bold');
         }
-        (winnerMessage as HTMLElement).textContent = `${winnerCar?.name} win ${winnerCar?.time} sec`;
-        winnerMessage?.classList.add('score-disable');
 
         (element.nextElementSibling as HTMLButtonElement).disabled = false;
         element.nextElementSibling?.classList.add('active-button');
