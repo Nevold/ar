@@ -9,5 +9,11 @@ export const Constants = {
 
   ENGINE_URL: 'http://127.0.0.1:3000/engine',
 
-  WINNERS_URL: 'http://127.0.0.1:3000/winners'
+  WINNERS_URL: 'http://127.0.0.1:3000/winners',
+
+  SIMBOL: '0123456789ABCDEF',
+
+  COLOR_LIMIT: 6,
+
+  CAR_LIMIT: 100
 };

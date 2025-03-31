@@ -1,4 +1,5 @@
 import EngineServices from '../api-services/engine-services';
+import { Constants } from './constants';
 
 const modelCars = ['Toyota', 'Mercedes', 'BMW', 'Honda', 'Volkswagen', 'Ford', 'Hyundai', 'Audi', 'Porsche', 'Nissan'];
 const modelNames = ['rav4', 's600', '3', 'accord', 'golf', 'mondeo', 'i30', 'q5', 'cayenne'];
@@ -10,16 +11,14 @@ function getRandomName(): string {
 }
 
 function getRandomColor(): string {
-  const SIMBOL = '0123456789ABCDEF';
-  const COLOR_LIMIT = 6;
   let hash = '#';
-  for (let index = 0; index < COLOR_LIMIT; index += 1) {
-    hash += SIMBOL[Math.floor(Math.random() * SIMBOL.length)];
+  for (let index = 0; index < Constants.COLOR_LIMIT; index += 1) {
+    hash += Constants.SIMBOL[Math.floor(Math.random() * Constants.SIMBOL.length)];
   }
   return hash;
 }
 
-export function generateCars(count = 100): {
+export function generateCars(count = Constants.CAR_LIMIT): {
   name: string;
   color: string;
 }[] {
