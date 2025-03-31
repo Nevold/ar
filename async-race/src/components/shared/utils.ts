@@ -22,7 +22,9 @@ export function generateCars(count = Constants.CAR_LIMIT): {
   name: string;
   color: string;
 }[] {
-  return new Array(count).fill({}).map(() => ({ name: getRandomName(), color: getRandomColor() }));
+  return Array.from({ length: count })
+    .fill({})
+    .map(() => ({ name: getRandomName(), color: getRandomColor() }));
 }
 
 export async function animation(
