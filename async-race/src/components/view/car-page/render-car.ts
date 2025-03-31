@@ -1,4 +1,4 @@
-import { ICar } from '../../types/types';
+import type { ICar } from '../../types/types';
 import { carImg } from '../render-car-img/car-img';
 
 export function renderCar(car: ICar): string {

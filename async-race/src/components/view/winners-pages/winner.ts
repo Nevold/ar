@@ -1,12 +1,13 @@
 import CarServices from '../../api-services/car-services';
-import { IWinnerCar } from '../../types/types';
+import type { IWinnerCar } from '../../types/types';
 import { carImg } from '../render-car-img/car-img';
 
 export async function renderWinners(item: IWinnerCar[], count: string | null, numberPages: number): Promise<string> {
   const winnerList = await Promise.all(
-    item.map(async elem => {
-      const { name, color } = (await CarServices.getCar(elem.id)).data;
-      return { ...elem, name, color };
+    item.map(async element => {
+      const carResult = await CarServices.getCar(element.id);
+      const { name, color } = carResult.data;
+      return { ...element, name, color };
     })
   );
   const winnersPageList = winnerList

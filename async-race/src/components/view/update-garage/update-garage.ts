@@ -1,4 +1,3 @@
-// import { getCars } from '../../shared/api';
 import { renderGarage } from '../garage-page/render-garage';
 import CarServices from '../../api-services/car-services';
 

@@ -1,4 +1,4 @@
-import { ICar } from '../../types/types';
+import type { ICar } from '../../types/types';
 import { renderCar } from '../car-page/render-car';
 
 export function renderGarage(item: ICar[], count: string | null, numberPages: number): string {
