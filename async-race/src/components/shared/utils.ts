@@ -33,7 +33,7 @@ export async function animation(
   animationTime: number,
   carId = -1
 ): Promise<boolean | undefined> {
-  let start: null | number = null;
+  let start: null | number;
   const DRAG_COEFFICIENT = 250;
   let successAnimationCarId: number;
   let windowSize = window.innerWidth;
@@ -41,21 +41,21 @@ export async function animation(
     windowSize = window.innerWidth;
     return windowSize;
   });
-  function step(timestamp: number) {
+  function step(timestamp: number): void {
     if (!start) start = timestamp;
     const time = timestamp - start;
     const passedPath = Math.round((time * (windowSize - DRAG_COEFFICIENT)) / animationTime);
     if (currentCar) currentCar.style.transform = `translateX(${Math.min(passedPath, windowSize - DRAG_COEFFICIENT)}px)`;
     if (passedPath < windowSize - DRAG_COEFFICIENT && currentCar?.classList.contains('in-transit')) {
-      successAnimationCarId = window.requestAnimationFrame(step);
+      successAnimationCarId = globalThis.requestAnimationFrame(step);
     }
   }
-  successAnimationCarId = window.requestAnimationFrame(step);
+  successAnimationCarId = globalThis.requestAnimationFrame(step);
 
   if (carId !== -1) {
     const successAnimationCar = (await EngineServices.isSuccessDriveCar(carId)).success;
     if (!successAnimationCar) {
-      window.cancelAnimationFrame(successAnimationCarId);
+      globalThis.cancelAnimationFrame(successAnimationCarId);
     }
     return successAnimationCar;
   }
