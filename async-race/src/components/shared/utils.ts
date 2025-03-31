@@ -120,18 +120,18 @@ export function disableAllControlButton(element: HTMLElement): void {
   });
 }
 
-export function disabledRaceButton(element: HTMLElement) {
-  const raceBtn = document.getElementById('race') as HTMLButtonElement;
-  const stopCarBtnList = document.getElementsByClassName('stop-icon') as HTMLCollectionOf<HTMLButtonElement>;
-  const classList = element.classList;
-  const qtMoveCars = [...stopCarBtnList].filter(elem => elem.classList.contains('active-icon')).length;
+export function disabledRaceButton(element: HTMLElement): void {
+  const raceButton = document.getElementById('race') as HTMLButtonElement;
+  const stopCarButtonList = document.getElementsByClassName('stop-icon') as HTMLCollectionOf<HTMLButtonElement>;
+  const { classList } = element;
+  const qtMoveCars = [...stopCarButtonList].filter(element_ => element_.classList.contains('active-icon')).length;
   if (classList.contains('start-icon')) {
-    raceBtn?.classList.remove('active-button');
-    raceBtn.disabled = true;
+    raceButton?.classList.remove('active-button');
+    raceButton.disabled = true;
   }
   if (classList.contains('stop-icon') && qtMoveCars === 0) {
-    raceBtn?.classList.add('active-button');
-    raceBtn.disabled = false;
+    raceButton?.classList.add('active-button');
+    raceButton.disabled = false;
   }
   if (
     classList.contains('remove-car') ||
@@ -141,7 +141,7 @@ export function disabledRaceButton(element: HTMLElement) {
     classList.contains('prev-btn') ||
     classList.contains('next-btn')
   ) {
-    raceBtn?.classList.add('active-button');
-    raceBtn.disabled = false;
+    raceButton?.classList.add('active-button');
+    raceButton.disabled = false;
   }
 }
