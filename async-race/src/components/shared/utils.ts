@@ -65,57 +65,57 @@ export async function animation(
 
 export function disableAllControlButton(element: HTMLElement): void {
   const controlButtonsList = document.getElementsByClassName('control-button') as HTMLCollectionOf<HTMLDivElement>;
-  const generateBtn = document.getElementById('generate') as HTMLButtonElement;
-  const updateBtn = document.getElementById('update-submit') as HTMLButtonElement;
-  const createBtn = document.getElementById('create-submit') as HTMLButtonElement;
-  const nextBtn = document.getElementById('next') as HTMLButtonElement;
-  const prevBtn = document.getElementById('prev') as HTMLButtonElement;
+  const generateButton = document.getElementById('generate') as HTMLButtonElement;
+  const updateButton = document.getElementById('update-submit') as HTMLButtonElement;
+  const createButton = document.getElementById('create-submit') as HTMLButtonElement;
+  const nextButton = document.getElementById('next') as HTMLButtonElement;
+  const previousButton = document.getElementById('prev') as HTMLButtonElement;
   if (element.classList.contains('race')) {
-    generateBtn.disabled = true;
-    updateBtn.disabled = true;
-    createBtn.disabled = true;
-    prevBtn.disabled = true;
-    nextBtn.disabled = true;
-    generateBtn.classList.add('button-disabled');
-    updateBtn.classList.add('button-disabled');
-    createBtn.classList.add('button-disabled');
-    prevBtn.classList.add('button-disabled');
-    nextBtn.classList.add('button-disabled');
+    generateButton.disabled = true;
+    updateButton.disabled = true;
+    createButton.disabled = true;
+    previousButton.disabled = true;
+    nextButton.disabled = true;
+    generateButton.classList.add('button-disabled');
+    updateButton.classList.add('button-disabled');
+    createButton.classList.add('button-disabled');
+    previousButton.classList.add('button-disabled');
+    nextButton.classList.add('button-disabled');
   }
   if (element.classList.contains('reset')) {
-    generateBtn.disabled = false;
-    updateBtn.disabled = false;
-    createBtn.disabled = false;
-    prevBtn.disabled = false;
-    nextBtn.disabled = false;
-    generateBtn.classList.remove('button-disabled');
-    updateBtn.classList.remove('button-disabled');
-    createBtn.classList.remove('button-disabled');
-    prevBtn.classList.remove('button-disabled');
-    nextBtn.classList.remove('button-disabled');
+    generateButton.disabled = false;
+    updateButton.disabled = false;
+    createButton.disabled = false;
+    previousButton.disabled = false;
+    nextButton.disabled = false;
+    generateButton.classList.remove('button-disabled');
+    updateButton.classList.remove('button-disabled');
+    createButton.classList.remove('button-disabled');
+    previousButton.classList.remove('button-disabled');
+    nextButton.classList.remove('button-disabled');
   }
 
-  [...controlButtonsList].forEach(elem => {
-    const btnElements = [...elem.children] as Array<HTMLButtonElement>;
-    btnElements.pop();
-    btnElements.forEach(btn => {
+  [...controlButtonsList].forEach(element_ => {
+    const buttonElements = [...element_.children] as Array<HTMLButtonElement>;
+    buttonElements.pop();
+    buttonElements.forEach(button => {
       if (element.classList.contains('race')) {
-        btn.disabled = true;
-        btn.classList.add('button-disabled');
+        button.disabled = true;
+        button.classList.add('button-disabled');
       } else {
-        btn.disabled = false;
-        btn.classList.remove('button-disabled');
+        button.disabled = false;
+        button.classList.remove('button-disabled');
       }
     });
   });
   const startIconList = document.getElementsByClassName('start-icon') as HTMLCollectionOf<HTMLButtonElement>;
-  [...startIconList].forEach(btn => {
+  [...startIconList].forEach(button => {
     if (element.classList.contains('race')) {
-      btn.disabled = true;
-      btn.classList.remove('active-icon');
+      button.disabled = true;
+      button.classList.remove('active-icon');
     } else {
-      btn.disabled = false;
-      btn.classList.add('active-icon');
+      button.disabled = false;
+      button.classList.add('active-icon');
     }
   });
 }
