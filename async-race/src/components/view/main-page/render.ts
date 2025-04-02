@@ -2,7 +2,8 @@ export function render(): void {
   const root = document.createElement('div');
   root.classList.add('root');
   document.body.append(root);
-  root.innerHTML = `
+
+  const innerHtml = `
     <div class="menu">
     <button class="button menu-button active-menu-button active-button" id="garage-menu">To garage</button>
     <button class="button menu-button active-menu-button" id="winner-menu">To winners</button>
@@ -36,4 +37,6 @@ export function render(): void {
       <button class="button menu-button next-btn" id="next">Next</button>
     </div>
     `;
+
+  root.insertAdjacentHTML('afterbegin', innerHtml);
 }

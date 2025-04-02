@@ -3,7 +3,12 @@ import type { NodeType, Options } from '../types/types';
 export class BaseComponent {
   private readonly node: NodeType;
 
-  constructor(classes: string[] | string = '', tag: keyof HTMLElementTagNameMap = 'div', content: string = '') {
+  constructor(
+    classes: string[] | string,
+    tag: keyof HTMLElementTagNameMap = 'div',
+    content: string = '',
+    attributes: Options = {}
+  ) {
     this.node = document.createElement(tag);
     if (typeof classes === 'string') {
       this.node.classList.add(classes);
@@ -11,6 +16,7 @@ export class BaseComponent {
       this.node.classList.add(...classes);
     }
     this.node.textContent = content;
+    this.setAttributes(attributes);
   }
 
   public getNode(): NodeType {
