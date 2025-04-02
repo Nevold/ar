@@ -1,4 +1,4 @@
-import type { NodeType, Options } from '../types/types';
+import type { Options } from '../types/types';
 
 export class BaseComponent<T extends keyof HTMLElementTagNameMap = 'div'> {
   private readonly node: HTMLElementTagNameMap[T];

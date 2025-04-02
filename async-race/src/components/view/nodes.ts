@@ -14,4 +14,13 @@ export class Nodes {
     'To garage',
     { id: 'garage-menu' }
   ).getNode();
+
+  public static readonly winnerMenuButton = new BaseComponent(
+    ['button', 'menu-button', 'active-menu-button'],
+    'button',
+    'To winners',
+    { id: 'winner-menu' }
+  ).getNode();
+
+  public static readonly winnerGarageWrapper = new BaseComponent('menu', 'div').getNode();
 }

@@ -1,3 +1,5 @@
+import { Nodes } from '../nodes';
+
 export function render(): void {
   const root = document.createElement('div');
   root.classList.add('root');
@@ -37,6 +39,7 @@ export function render(): void {
       <button class="button menu-button next-btn" id="next">Next</button>
     </div>
     `;
-
+  // root.append(Nodes.winnerGarageWrapper);
+  // Nodes.winnerGarageWrapper.append(Nodes.garageMenuButton, Nodes.winnerMenuButton);
   root.insertAdjacentHTML('afterbegin', innerHtml);
 }
