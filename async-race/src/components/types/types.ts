@@ -55,3 +55,9 @@ export interface CustomAxiosError<T = unknown> extends Error {
     status: number;
   };
 }
+
+export type NodeType = HTMLElement | HTMLLabelElement | HTMLButtonElement | HTMLInputElement;
+
+export interface Options {
+  [key: string]: string;
+}
