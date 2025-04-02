@@ -31,7 +31,7 @@ module.exports = {
     'func-names': 'off',
     'class-methods-use-this': 'off',
     'no-plusplus': 'warn',
-    'no-console': 'warn',
+    'no-console': 'off', // TODO warn
     'max-len': ['warn', { code: 120 }],
     'import/prefer-default-export': 'off',
     '@typescript-eslint/lines-between-class-members': 'warn',
