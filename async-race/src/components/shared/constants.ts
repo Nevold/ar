@@ -15,5 +15,7 @@ export const Constants = {
 
   COLOR_LIMIT: 6,
 
-  CAR_LIMIT: 100
+  CAR_LIMIT: 100,
+
+  CAR_LIMIT_PAGE: 7
 };

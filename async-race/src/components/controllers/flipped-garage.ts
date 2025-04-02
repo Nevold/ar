@@ -1,3 +1,5 @@
+import CarServices from '../api-services/car-services';
+import { Constants } from '../shared/constants';
 import { disabledRaceButton } from '../shared/utils';
 import { updateGaragePage } from '../view/update-garage/update-garage';
 
@@ -10,8 +12,11 @@ export function setFlippedGarage(): void {
     try {
       switch (true) {
         case element.classList.contains('next-btn'): {
-          numberPages += 1;
-          await updateGaragePage(numberPages);
+          const carsList = await CarServices.getCars(numberPages);
+          if (carsList?.count && Number(carsList?.count) > Constants.CAR_LIMIT_PAGE) {
+            numberPages += 1;
+            await updateGaragePage(numberPages);
+          }
           break;
         }
 
