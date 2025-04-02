@@ -7,4 +7,11 @@ export class Nodes {
   public static readonly dialogOptionsNode = new BaseComponent('dialog', 'dialog').getNode();
 
   public static childrenList: NodeType[] = [];
+
+  public static readonly garageMenuButton = new BaseComponent(
+    ['button', 'menu-button', 'active-menu-button', 'active-button'],
+    'button',
+    'To garage',
+    { id: 'garage-menu' }
+  ).getNode();
 }

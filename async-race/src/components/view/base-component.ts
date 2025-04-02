@@ -10,6 +10,7 @@ export class BaseComponent {
     attributes: Options = {}
   ) {
     this.node = document.createElement(tag);
+
     if (typeof classes === 'string') {
       this.node.classList.add(classes);
     } else if (Array.isArray(classes)) {
