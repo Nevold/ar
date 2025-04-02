@@ -1,8 +1,9 @@
+import { Nodes } from '../view/nodes';
 import { updateWinnerPage } from '../view/winners-pages/update-winners';
 
 export function routing(): void {
-  const garageControl = document.getElementById('garage-menu');
-  const winnerControl = document.getElementById('winner-menu');
+  const garageControl = Nodes.garageMenuButton;
+  const winnerControl = Nodes.winnerMenuButton;
   const garagePage = document.getElementById('garage-page');
   const winnerPage = document.getElementById('winner');
   const buttonList = document.getElementById('prev');
