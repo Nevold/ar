@@ -1,14 +1,9 @@
 import type { NodeType, Options } from '../types/types';
 
-export class BaseComponent {
-  private readonly node: NodeType;
+export class BaseComponent<T extends keyof HTMLElementTagNameMap = 'div'> {
+  private readonly node: HTMLElementTagNameMap[T];
 
-  constructor(
-    classes: string[] | string,
-    tag: keyof HTMLElementTagNameMap = 'div',
-    content: string = '',
-    attributes: Options = {}
-  ) {
+  constructor(classes: string[] | string, tag: T, content: string = '', attributes: Options = {}) {
     this.node = document.createElement(tag);
 
     if (typeof classes === 'string') {
@@ -20,7 +15,7 @@ export class BaseComponent {
     this.setAttributes(attributes);
   }
 
-  public getNode(): NodeType {
+  public getNode(): HTMLElementTagNameMap[T] {
     return this.node;
   }
 
