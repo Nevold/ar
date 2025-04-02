@@ -8,39 +8,45 @@ export function sortWinners(): void {
     time: false
   };
 
-  document.body.addEventListener('click', event => {
+  document.body.addEventListener('click', async event => {
     const element = event.target as HTMLElement;
     switch (true) {
-      case element.classList.contains('table-name'):
-        flags.name
-          ? (sortCall = { ...sortCall, sort: 'id', order: 'ASC' })
-          : (sortCall = { ...sortCall, sort: 'id', order: 'DESC' });
+      case element.classList.contains('table-name'): {
+        sortCall = flags.name ? { ...sortCall, sort: 'id', order: 'ASC' } : { ...sortCall, sort: 'id', order: 'DESC' };
         flags.name = !flags.name;
         break;
+      }
 
-      case element.classList.contains('table-wins'):
-        flags.wins
-          ? (sortCall = { ...sortCall, sort: 'wins', order: 'DESC' })
-          : (sortCall = { ...sortCall, sort: 'wins', order: 'ASC' });
+      case element.classList.contains('table-wins'): {
+        sortCall = flags.wins
+          ? { ...sortCall, sort: 'wins', order: 'DESC' }
+          : { ...sortCall, sort: 'wins', order: 'ASC' };
         flags.wins = !flags.wins;
         break;
+      }
 
-      case element.classList.contains('table-time'):
-        flags.time
-          ? (sortCall = { ...sortCall, sort: 'time', order: 'DESC' })
-          : (sortCall = { ...sortCall, sort: 'time', order: 'ASC' });
+      case element.classList.contains('table-time'): {
+        sortCall = flags.time
+          ? { ...sortCall, sort: 'time', order: 'DESC' }
+          : { ...sortCall, sort: 'time', order: 'ASC' };
         flags.time = !flags.time;
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
     if (
       element.classList.contains('table-time') ||
       element.classList.contains('table-wins') ||
       element.classList.contains('table-name')
     ) {
-      updateWinnerPage(sortCall.page, sortCall.limit, sortCall.sort, sortCall.order);
+      try {
+        await updateWinnerPage(sortCall.page, sortCall.limit, sortCall.sort, sortCall.order);
+      } catch (error) {
+        console.log(`%c Error: ${String(error)}`, 'background: grey;color:#e9ed09;font-weight:bold');
+      }
     }
   });
 }
