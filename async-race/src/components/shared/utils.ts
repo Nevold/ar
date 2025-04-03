@@ -1,4 +1,5 @@
 import EngineServices from '../api-services/engine-services';
+import { Nodes } from '../view/nodes';
 import { Constants } from './constants';
 
 const modelCars = ['Toyota', 'Mercedes', 'BMW', 'Honda', 'Volkswagen', 'Ford', 'Hyundai', 'Audi', 'Porsche', 'Nissan'];
@@ -68,8 +69,8 @@ export function disableAllControlButton(element: HTMLElement): void {
   const generateButton = document.getElementById('generate') as HTMLButtonElement;
   const updateButton = document.getElementById('update-submit') as HTMLButtonElement;
   const createButton = document.getElementById('create-submit') as HTMLButtonElement;
-  const nextButton = document.getElementById('next') as HTMLButtonElement;
-  const previousButton = document.getElementById('prev') as HTMLButtonElement;
+  const { nextButton } = Nodes;
+  const previousButton = Nodes.prevButton;
   if (element.classList.contains('race')) {
     generateButton.disabled = true;
     updateButton.disabled = true;
