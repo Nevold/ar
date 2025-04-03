@@ -4,7 +4,7 @@ import { updateWinnerPage } from '../view/winners-pages/update-winners';
 export function routing(): void {
   const garageControl = Nodes.garageMenuButton;
   const winnerControl = Nodes.winnerMenuButton;
-  const garagePage = document.getElementById('garage-page');
+  const garagePage = Nodes.garagePageWrapper;
   const winnerPage = document.getElementById('winner');
   const buttonList = document.getElementById('prev');
 

@@ -6,8 +6,14 @@ export function render(): void {
   document.body.append(root);
 
   const innerHtml = `
+  <div class="disable-page" id="winner"></div>
+    <div class="pagination">
+      <button class="button menu-button prev-btn" id="prev">Prev</button>
+      <button class="button menu-button next-btn" id="next">Next</button>
+    </div>
+    `;
 
-  <div id="garage-page">
+  const garageInnerHtml = `
     <div class="winner-message"></div>  
     <div>
       <form class="form" id="create-cars">
@@ -29,14 +35,10 @@ export function render(): void {
     <div id="garage">
     </div>
     <div><p class="message" id="message"></p></div>
-  </div>
-  <div class="disable-page" id="winner"></div>
-    <div class="pagination">
-      <button class="button menu-button prev-btn" id="prev">Prev</button>
-      <button class="button menu-button next-btn" id="next">Next</button>
-    </div>
-    `;
-  root.append(Nodes.winnerGarageWrapper);
+   `;
+
+  root.append(Nodes.winnerGarageWrapper, Nodes.garagePageWrapper);
+  Nodes.garagePageWrapper.insertAdjacentHTML('afterbegin', garageInnerHtml);
   Nodes.winnerGarageWrapper.append(Nodes.garageMenuButton, Nodes.winnerMenuButton);
   root.insertAdjacentHTML('beforeend', innerHtml);
 }

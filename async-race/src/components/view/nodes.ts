@@ -1,13 +1,6 @@
-import type { NodeType } from '../types/types';
 import { BaseComponent } from './base-component';
 
 export class Nodes {
-  public static readonly dialogListNode = new BaseComponent('dialog', 'dialog').getNode();
-
-  public static readonly dialogOptionsNode = new BaseComponent('dialog', 'dialog').getNode();
-
-  public static childrenList: NodeType[] = [];
-
   public static readonly garageMenuButton = new BaseComponent(
     ['button', 'menu-button', 'active-menu-button', 'active-button'],
     'button',
@@ -23,4 +16,8 @@ export class Nodes {
   ).getNode();
 
   public static readonly winnerGarageWrapper = new BaseComponent('menu', 'div').getNode();
+
+  public static readonly garagePageWrapper = new BaseComponent('', 'div', '', {
+    id: 'garage-page'
+  }).getNode();
 }

@@ -6,9 +6,9 @@ export class BaseComponent<T extends keyof HTMLElementTagNameMap = 'div'> {
   constructor(classes: string[] | string, tag: T, content: string = '', attributes: Options = {}) {
     this.node = document.createElement(tag);
 
-    if (typeof classes === 'string') {
+    if (typeof classes === 'string' && classes) {
       this.node.classList.add(classes);
-    } else if (Array.isArray(classes)) {
+    } else if (classes && Array.isArray(classes)) {
       this.node.classList.add(...classes);
     }
     this.node.textContent = content;
