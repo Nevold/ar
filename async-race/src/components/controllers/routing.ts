@@ -5,8 +5,8 @@ export function routing(): void {
   const garageControl = Nodes.garageMenuButton;
   const winnerControl = Nodes.winnerMenuButton;
   const garagePage = Nodes.garagePageWrapper;
-  const winnerPage = document.getElementById('winner');
-  const buttonList = document.getElementById('prev');
+  const { winnerPage } = Nodes;
+  const buttonList = Nodes.prevButton;
 
   garageControl?.addEventListener('click', () => {
     garageControl?.classList.add('active-button');

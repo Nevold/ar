@@ -5,13 +5,12 @@ export function render(): void {
   root.classList.add('root');
   document.body.append(root);
 
-  const innerHtml = `
-  <div class="disable-page" id="winner"></div>
-    <div class="pagination">
-      <button class="button menu-button prev-btn" id="prev">Prev</button>
-      <button class="button menu-button next-btn" id="next">Next</button>
-    </div>
-    `;
+  // const innerHtml = `
+  //    <div class="pagination">
+  //     <button class="button menu-button prev-btn" id="prev">Prev</button>
+  //     <button class="button menu-button next-btn" id="next">Next</button>
+  //   </div>
+  //   `;
 
   const garageInnerHtml = `
     <div class="winner-message"></div>  
@@ -37,13 +36,9 @@ export function render(): void {
     <div><p class="message" id="message"></p></div>
    `;
 
-  root.append(Nodes.winnerGarageWrapper, Nodes.garagePageWrapper);
+  root.append(Nodes.winnerGarageWrapper, Nodes.garagePageWrapper, Nodes.winnerPage, Nodes.paginationWrapper);
   Nodes.garagePageWrapper.insertAdjacentHTML('afterbegin', garageInnerHtml);
   Nodes.winnerGarageWrapper.append(Nodes.garageMenuButton, Nodes.winnerMenuButton);
-  root.insertAdjacentHTML('beforeend', innerHtml);
+  Nodes.paginationWrapper.append(Nodes.prevButton, Nodes.nextButton);
+  // root.insertAdjacentHTML('beforeend', innerHtml);
 }
-
-// <div class="menu">
-// <button class="button menu-button active-menu-button active-button" id="garage-menu">To garage</button>
-// <button class="button menu-button active-menu-button" id="winner-menu">To winners</button>
-// </div>
