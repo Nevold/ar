@@ -51,7 +51,6 @@ module.exports = {
     '@typescript-eslint/no-unsafe-member-access': 'off',
     'unicorn/no-for-loop': 'off',
     'no-param-reassign': 'off',
-    '@typescript-eslint/consistent-type-assertions': 'off', // TODO: DELETE
     'unicorn/prefer-query-selector': 'off', // TODO: DELETE
     '@typescript-eslint/no-misused-promises': 'off' // TODO: DELETE
   },
