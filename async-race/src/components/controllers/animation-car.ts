@@ -26,19 +26,20 @@ export function animationCar(): void {
           id = Number(element.id.split('start-car-').pop());
           currentCar = document.getElementById(`car-${id}`);
           currentCar?.classList.add('in-transit');
-          const startButton = (
-            ((currentCar as HTMLElement).previousElementSibling as HTMLElement).previousElementSibling as HTMLElement
-          ).firstElementChild as HTMLButtonElement;
-          startButton.disabled = true;
-          const startEngineCarResult = await EngineServices.startEngineCar(id);
-          const { velocity: velocityStart, distance: distanceStart } = startEngineCarResult.data;
-          const animationTimeStart = distanceStart / velocityStart;
-          await animation(currentCar, distanceStart, animationTimeStart, id);
-          startButton.classList.remove('active-icon');
+          const startButton = currentCar?.previousElementSibling?.previousElementSibling?.firstElementChild;
 
-          if (startButton.nextElementSibling instanceof HTMLButtonElement) {
-            startButton.nextElementSibling.classList.add('active-icon');
-            startButton.nextElementSibling.disabled = false;
+          if (startButton && startButton instanceof HTMLButtonElement) {
+            startButton.disabled = true;
+            const startEngineCarResult = await EngineServices.startEngineCar(id);
+            const { velocity: velocityStart, distance: distanceStart } = startEngineCarResult.data;
+            const animationTimeStart = distanceStart / velocityStart;
+            await animation(currentCar, distanceStart, animationTimeStart, id);
+            startButton.classList.remove('active-icon');
+
+            if (startButton.nextElementSibling instanceof HTMLButtonElement) {
+              startButton.nextElementSibling.classList.add('active-icon');
+              startButton.nextElementSibling.disabled = false;
+            }
           }
 
           disabledRaceButton(element);
