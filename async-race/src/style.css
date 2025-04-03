@@ -71,11 +71,17 @@ body {
   background: #dfbfa2 linear-gradient(#e62b0a, #0f0f0f);
 }
 
+.race,
+.reset {
+  opacity: 0.4;
+  filter: blur(0.6px);
+}
+
 .active-button {
   color: #ffe4c4;
   opacity: 1;
   background: #6b6a6a linear-gradient(#697983, #737577);
-  filter: blur(0);
+  filter: none;
 }
 
 .active-menu-button:hover,
@@ -146,12 +152,6 @@ input[type='color']:disabled {
   display: none;
 }
 
-.race,
-.reset {
-  opacity: 0.8;
-  filter: blur(1px);
-}
-
 thead {
   color: #ffe4c4;
   background-color: #303094;
@@ -215,8 +215,8 @@ td {
 
 .button-disabled {
   cursor: default !important;
-  opacity: 0.6;
-  filter: blur(1px);
+  opacity: 0.4;
+  filter: blur(0.6px);
 }
 
 @media screen and (width <= 900px) {
