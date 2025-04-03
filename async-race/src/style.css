@@ -1,57 +1,60 @@
 body {
-  background-color: rgb(37, 35, 35);
+  background-color: #252323;
 }
+
 .root {
   width: 99%;
   margin: 0 auto;
 }
+
 .menu {
   margin-bottom: 40px;
 }
 
 .button,
 .input {
+  user-select: none;
   display: inline-block;
+  padding: 1px 1.2em;
+  border: 1px solid #212b34;
+  border-radius: 3px;
   font-family: arial, sans-serif;
   font-size: 11px;
-  color: rgb(205, 216, 228);
-  text-shadow: 0 -1px rgb(46, 53, 58);
-  text-decoration: none;
-  user-select: none;
   line-height: 2em;
-  padding: 1px 1.2em;
-  outline: none;
-  border: 1px solid rgba(33, 43, 52, 1);
-  border-radius: 3px;
-  background: rgb(81, 92, 102) linear-gradient(rgb(81, 92, 102), rgb(55, 59, 63));
-  box-shadow:
-    inset 0 1px rgba(101, 114, 126, 1),
-    inset 0 0 1px rgba(140, 150, 170, 0.8),
-    0 1px rgb(83, 94, 104),
-    0 0 1px rgb(86, 96, 106);
+  color: #cdd8e4;
+  text-decoration: none;
+  text-shadow: 0 -1px #2e353a;
   text-transform: uppercase;
+  background: #515c66 linear-gradient(#515c66, #373b3f);
+  outline: none;
+  box-shadow:
+    inset 0 1px #65727e,
+    inset 0 0 1px #8c96aacc,
+    0 1px #535e68,
+    0 0 1px #56606a;
 }
 
 .menu-button,
 .button-disabled {
-  background: rgb(144, 151, 158) linear-gradient(rgb(155, 160, 165), rgb(143, 138, 138));
+  background: #90979e linear-gradient(#9ba0a5, #8f8a8a);
 }
 
 .icon {
-  background: #ccc;
-  color: rgb(112, 108, 108);
-  font-weight: 600;
   margin-top: 10px;
   margin-bottom: 20px;
+  font-weight: 600;
+  color: #706c6c;
+  background: #ccc;
 }
+
 .active-icon {
-  background: rgb(223, 191, 162) linear-gradient(rgb(15, 15, 15), rgb(230, 43, 10));
+  background: #dfbfa2 linear-gradient(#0f0f0f, #e62b0a);
 }
 
 .form {
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .drive-control {
@@ -59,14 +62,22 @@ body {
 }
 
 .road {
-  border-bottom: 2px dotted whitesmoke;
   position: relative;
+  border-bottom: 2px dotted whitesmoke;
 }
 
 .active-icon:hover {
   cursor: pointer;
-  background: rgb(223, 191, 162) linear-gradient(rgb(230, 43, 10), rgb(15, 15, 15));
+  background: #dfbfa2 linear-gradient(#e62b0a, #0f0f0f);
 }
+
+.active-button {
+  color: #ffe4c4;
+  opacity: 1;
+  background: #6b6a6a linear-gradient(#697983, #737577);
+  filter: blur(0);
+}
+
 .active-menu-button:hover,
 .input:hover,
 .create-submit:hover,
@@ -77,8 +88,8 @@ body {
 .next-btn:hover,
 .prev-btn:hover,
 .update-flag:hover {
-  background: rgb(107, 106, 106) linear-gradient(rgb(105, 121, 131), rgb(115, 117, 119));
   cursor: pointer;
+  background: #6b6a6a linear-gradient(#697983, #737577);
 }
 
 .active-icon:active,
@@ -92,21 +103,23 @@ body {
 .next-btn:active,
 .prev-btn:active,
 .update-flag:active {
-  background: rgb(17, 17, 17) linear-gradient(rgb(16, 18, 19), rgb(5, 5, 5));
+  background: #111 linear-gradient(#101213, #050505);
 }
 
 h1,
 h2,
 .car-name {
-  color: rgb(243, 235, 225);
+  color: #f3ebe1;
 }
+
 .car {
-  width: 80px;
-  height: 80px;
   position: absolute;
   top: 0;
   left: 100px;
+  width: 80px;
+  height: 80px;
 }
+
 li,
 ul {
   margin: 0;
@@ -114,8 +127,8 @@ ul {
 }
 
 li {
-  list-style: none;
   margin-bottom: 15px;
+  list-style: none;
 }
 
 .car-name {
@@ -125,76 +138,75 @@ li {
 
 input[type='text']:disabled,
 input[type='color']:disabled {
-  background: #ccc;
   opacity: 0.4;
+  background: #ccc;
 }
 
 .disable-page {
   display: none;
 }
+
 .race,
 .reset {
   opacity: 0.8;
   filter: blur(1px);
 }
 
-.active-button {
-  background: rgb(107, 106, 106) linear-gradient(rgb(105, 121, 131), rgb(115, 117, 119));
-  color: bisque;
-  opacity: 1;
-  filter: blur(0px);
+thead {
+  color: #ffe4c4;
+  background-color: #303094;
 }
 
-thead {
-  background-color: rgb(48, 48, 148);
-  color: bisque;
-}
 .table {
   border-collapse: collapse;
   margin-bottom: 30px;
 }
+
 th,
 td {
   margin: 2px;
-  padding-left: 5px;
   padding: 2px 10px;
+  padding-left: 5px;
   text-align: center;
 }
+
 td {
   color: aliceblue;
 }
 
 .flag {
-  font-size: 36px;
   position: absolute;
   top: 8px;
   right: 100px;
+  font-size: 36px;
 }
 
 .winner-message {
-  display: none;
   position: absolute;
-  font-size: 50px;
-  color: antiquewhite;
-  text-shadow:
-    1px 1px 2px black,
-    0 0 3px red;
+  z-index: 10;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
-  text-align: center;
+  display: none;
   width: 100%;
+  font-size: 50px;
+  color: antiquewhite;
+  text-align: center;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 3px red;
 }
+
 .score-disable {
   display: block;
 }
 
 .table-button:hover {
-  background: rgb(149 99 99 / 82%) linear-gradient(rgb(79 77 177), rgb(0 0 0 / 30%));
-  color: yellow;
   cursor: pointer;
+  color: #ff0;
+  background: #956363d1 linear-gradient(rgb(79 77 177), rgb(0 0 0 / 30%));
 }
+
 .table-button:active {
   box-shadow:
     1px 1px 1px silver,
@@ -207,13 +219,13 @@ td {
   filter: blur(1px);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (width <= 900px) {
   .winner-message {
     font-size: 38px;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (width<= 700px) {
   .winner-message {
     font-size: 28px;
   }
