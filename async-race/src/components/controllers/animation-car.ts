@@ -50,20 +50,22 @@ export function animationCar(): void {
           id = Number(element.id.split('stop-car-').pop());
           currentCar = document.getElementById(`car-${id}`);
           currentCar?.classList.remove('in-transit');
-          const stopButton = (
-            ((currentCar as HTMLElement).previousElementSibling as HTMLElement).previousElementSibling as HTMLElement
-          ).lastElementChild as HTMLButtonElement;
-          stopButton.disabled = true;
-          const stopEngineCarResult = await EngineServices.stopEngineCar(id);
-          const { velocity: velocityStop, distance: distanceStop } = stopEngineCarResult.data;
-          const animationTimeStop = distanceStop / velocityStop;
-          await animation(currentCar, distanceStop, animationTimeStop);
-          stopButton.classList.remove('active-icon');
+          const stopButton = currentCar?.previousElementSibling?.previousElementSibling?.lastElementChild;
 
-          if (stopButton.previousElementSibling instanceof HTMLButtonElement) {
+          if (stopButton && stopButton instanceof HTMLButtonElement) {
+            stopButton.disabled = true;
+            const stopEngineCarResult = await EngineServices.stopEngineCar(id);
+            const { velocity: velocityStop, distance: distanceStop } = stopEngineCarResult.data;
+            const animationTimeStop = distanceStop / velocityStop;
+            await animation(currentCar, distanceStop, animationTimeStop);
+            stopButton.classList.remove('active-icon');
+          }
+
+          if (stopButton && stopButton.previousElementSibling instanceof HTMLButtonElement) {
             stopButton.previousElementSibling.classList.add('active-icon');
             stopButton.previousElementSibling.disabled = false;
           }
+
           disabledRaceButton(element);
           break;
         }
