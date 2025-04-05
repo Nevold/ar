@@ -80,8 +80,10 @@ export function animationCar(): void {
             const startEngineCarResult = await EngineServices.startEngineCar(element_.id);
             const { velocity: velocityCarStart, distance: distanceCarStart } = startEngineCarResult.data;
             const animationTimeRaceStart = distanceCarStart / velocityCarStart;
-            const success = animation(currentCarStart, distanceCarStart, animationTimeRaceStart, element_.id);
-            return { ...element_, time: Number((animationTimeRaceStart / 1000).toFixed(2)), success };
+
+            const isSuccess = await animation(currentCarStart, distanceCarStart, animationTimeRaceStart, element_.id);
+
+            return { ...element_, time: Number((animationTimeRaceStart / 1000).toFixed(2)), success: !!isSuccess };
           });
 
           if (element instanceof HTMLButtonElement) {
@@ -90,7 +92,7 @@ export function animationCar(): void {
 
           element.classList.remove('active-button');
 
-          const currentRaceCars = await Promise.all(promisesStart as unknown[] as ISuccessRaceCars[]);
+          const currentRaceCars = promisesStart ? await Promise.all(promisesStart) : [];
           const currentRaceCarsTemporary = [...currentRaceCars];
           const currentRaceCarsSort = currentRaceCarsTemporary.sort((a: ISuccessRaceCars, b: ISuccessRaceCars) =>
             a.time > b.time ? 1 : -1
@@ -98,7 +100,7 @@ export function animationCar(): void {
 
           const returnFirstFastCar = async (): Promise<ISuccessRaceCars | undefined> => {
             const fastestDriveCar = currentRaceCarsSort.shift();
-            const isSuccess = await fastestDriveCar?.success;
+            const isSuccess = fastestDriveCar?.success;
             if (isSuccess || currentRaceCarsSort.length === 0) {
               return fastestDriveCar;
             }
@@ -126,14 +128,18 @@ export function animationCar(): void {
                     ));
               }
             }
-            (winnerMessage as HTMLElement).textContent = `${winnerCar?.name} win ${winnerCar?.time} sec`;
-            winnerMessage?.classList.add('score-disable');
+            if (winnerMessage) {
+              winnerMessage.textContent = `${winnerCar?.name} win ${winnerCar?.time} sec`;
+              winnerMessage.classList.add('score-disable');
+            }
           } catch (error) {
             console.log(`%c Error: ${String(error)}`, 'background: grey;color:#e9ed09;font-weight:bold');
           }
 
-          (element.nextElementSibling as HTMLButtonElement).disabled = false;
-          element.nextElementSibling?.classList.add('active-button');
+          if (element.nextElementSibling instanceof HTMLButtonElement) {
+            element.nextElementSibling.disabled = false;
+            element.nextElementSibling?.classList.add('active-button');
+          }
 
           break;
         }
@@ -151,18 +157,28 @@ export function animationCar(): void {
               const animationTimeRaceStop = distanceCarStop / velocityCarStop;
               await animation(currentCarStop, distanceCarStop, animationTimeRaceStop);
             });
-            await Promise.all(promisesStop as Promise<void>[]);
+
+            if (promisesStop) {
+              await Promise.all(promisesStop);
+            }
           } catch (error) {
             console.log(`%c Error: ${String(error)}`, 'background: grey;color:#e9ed09;font-weight:bold');
           }
 
           disableAllControlButton(element);
           element.classList.remove('active-button');
-          (element as HTMLButtonElement).disabled = true;
-          (element.previousElementSibling as HTMLButtonElement).disabled = false;
-          element.previousElementSibling?.classList.add('active-button');
-          winnerMessage?.classList.remove('score-disable');
-          (winnerMessage as HTMLElement).textContent = '';
+
+          if (
+            element instanceof HTMLButtonElement &&
+            element.previousElementSibling instanceof HTMLButtonElement &&
+            winnerMessage
+          ) {
+            element.disabled = true;
+            element.previousElementSibling.disabled = false;
+            element.previousElementSibling?.classList.add('active-button');
+            winnerMessage?.classList.remove('score-disable');
+            winnerMessage.textContent = '';
+          }
           break;
         }
 

@@ -34,7 +34,7 @@ export interface ISort {
 }
 
 export interface ISuccessRaceCars {
-  success: Promise<boolean>;
+  success: boolean;
   time: number;
   name: string;
   color: string;
